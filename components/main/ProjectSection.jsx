@@ -34,7 +34,7 @@ const projects = [
         <br />
       </span>,
     ],
-    link: "#",
+    link: "https://github.com/deepanshigautam/Gemini-clone",
     demo: "#",
     image: gemini,
   },
@@ -66,7 +66,7 @@ const projects = [
         computer vision through innovative project design.
       </span>,
     ],
-    link: "#",
+    link: "https://github.com/deepanshigautam/Air-canvas",
     demo: "#",
     image: aircanvas,
   },
@@ -110,15 +110,15 @@ export default function ProjectSection() {
       <div className="container mx-auto">
         <div className="flex justify-center my-5 lg:py-8">
           <div className="flex items-center">
-            <span className="w-24 h-[2px] bg-[#c0c0c0]"></span>
-            <span className="relative text-black text-[35px] font-semibold text-xl p-2 px-5 rounded-lg">
+            <span className="w-20 lg:w-24 h-[2.5px] bg-[#c0c0c0]"></span>
+            <span className="relative text-black text-4xl font-bold p-2 px-5 rounded-lg">
               Projects
             </span>
-            <span className="w-24 h-[2px] bg-[#c0c0c0]"></span>
+            <span className="w-20 lg:w-24 h-[2.5px] bg-[#c0c0c0]"></span>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 mt-14">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} index={index} />
           ))}

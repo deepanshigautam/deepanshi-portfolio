@@ -53,3 +53,12 @@ body {
   background: var(--red);
   transform-origin: 0%;
 }
+.custom-cursor {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+a:hover .custom-cursor,
+button:hover .custom-cursor {
+  background-color: #2f3545; /* Change color on hover */
+  transform: scale(1.5); /* Scale effect on hover */
+}

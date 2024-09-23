@@ -1,3 +1,4 @@
+// Home.jsx
 "use client"; // This makes the component a client component
 
 import React, { useState, useEffect } from "react";
@@ -6,6 +7,7 @@ import Aboutme from "@/components/main/Aboutme";
 import Skills from "@/components/main/Skills";
 import ProjectSection from "@/components/main/ProjectSection";
 import { motion } from "framer-motion";
+import CustomCursor from "@/components/main/CustomCursor"; // Adjust the import path
 import "@/app/globals.css";
 
 const Loading = () => (
@@ -172,7 +174,6 @@ const Loading = () => (
     `}</style>
   </div>
 );
-
 export default function Home() {
   const [loading, setLoading] = useState(true);
 
@@ -186,6 +187,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen w-full bg-[#F6f7f8]">
+      <CustomCursor />
       {loading && <Loading />}
       {!loading && (
         <>

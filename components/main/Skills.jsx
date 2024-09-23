@@ -16,7 +16,7 @@ function Skills() {
       <div className="flex justify-center my-5 lg:py-8">
   <div className="flex items-center">
     <span className="w-24 h-[2px] bg-[#c0c0c0]"></span>
-    <span className="relative text-black text-[35px] font-semibold text-xl p-2 px-5 rounded-lg">
+    <span className="relative text-black text-4xl font-bold p-2 px-5 rounded-lg">
       Skills
     </span>
     <span className="w-24 h-[2px] bg-[#c0c0c0]"></span>
