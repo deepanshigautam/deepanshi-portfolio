@@ -1,113 +1,227 @@
-import Image from "next/image";
+"use client"; // This makes the component a client component
+
+import React, { useState, useEffect } from "react";
+import Hero from "@/components/main/Hero";
+import Aboutme from "@/components/main/Aboutme";
+import Skills from "@/components/main/Skills";
+import ProjectSection from "@/components/main/ProjectSection";
+import { motion } from "framer-motion";
+import "@/app/globals.css";
+
+const Loading = () => (
+  <div className="fixed inset-0 flex items-center justify-center bg-gray-100 z-50">
+    <div className="loader">
+      <svg viewBox="0 0 80 80">
+        <circle r="32" cy="40" cx="40"></circle>
+      </svg>
+    </div>
+    <div className="loader triangle">
+      <svg viewBox="0 0 86 80">
+        <polygon points="43 8 79 72 7 72"></polygon>
+      </svg>
+    </div>
+    <div className="loader">
+      <svg viewBox="0 0 80 80">
+        <rect height="64" width="64" y="8" x="8"></rect>
+      </svg>
+    </div>
+    <style jsx>{`
+      .loader {
+        --path: #2f3545;
+        --dot: #5628ee;
+        --duration: 3s;
+        width: 44px;
+        height: 44px;
+        position: relative;
+        display: inline-block;
+        margin: 0 16px;
+      }
+
+      .loader:before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        position: absolute;
+        display: block;
+        background: var(--dot);
+        top: 37px;
+        left: 19px;
+        transform: translate(-18px, -18px);
+        animation: dotRect var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86)
+          infinite;
+      }
+
+      .loader svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .loader svg rect,
+      .loader svg polygon,
+      .loader svg circle {
+        fill: none;
+        stroke: var(--path);
+        stroke-width: 10px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
+
+      .loader svg polygon {
+        stroke-dasharray: 145 76 145 76;
+        stroke-dashoffset: 0;
+        animation: pathTriangle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86)
+          infinite;
+      }
+
+      .loader svg rect {
+        stroke-dasharray: 192 64 192 64;
+        stroke-dashoffset: 0;
+        animation: pathRect var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+      }
+
+      .loader svg circle {
+        stroke-dasharray: 150 50 150 50;
+        stroke-dashoffset: 75;
+        animation: pathCircle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86)
+          infinite;
+      }
+
+      @keyframes pathTriangle {
+        33% {
+          stroke-dashoffset: 74;
+        }
+
+        66% {
+          stroke-dashoffset: 147;
+        }
+
+        100% {
+          stroke-dashoffset: 221;
+        }
+      }
+
+      @keyframes dotTriangle {
+        33% {
+          transform: translate(0, 0);
+        }
+
+        66% {
+          transform: translate(10px, -18px);
+        }
+
+        100% {
+          transform: translate(-10px, -18px);
+        }
+      }
+
+      @keyframes pathRect {
+        25% {
+          stroke-dashoffset: 64;
+        }
+
+        50% {
+          stroke-dashoffset: 128;
+        }
+
+        75% {
+          stroke-dashoffset: 192;
+        }
+
+        100% {
+          stroke-dashoffset: 256;
+        }
+      }
+
+      @keyframes dotRect {
+        25% {
+          transform: translate(0, 0);
+        }
+
+        50% {
+          transform: translate(18px, -18px);
+        }
+
+        75% {
+          transform: translate(0, -36px);
+        }
+
+        100% {
+          transform: translate(-18px, -18px);
+        }
+      }
+
+      @keyframes pathCircle {
+        25% {
+          stroke-dashoffset: 125;
+        }
+
+        50% {
+          stroke-dashoffset: 175;
+        }
+
+        75% {
+          stroke-dashoffset: 225;
+        }
+
+        100% {
+          stroke-dashoffset: 275;
+        }
+      }
+    `}</style>
+  </div>
+);
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000); // Adjust the duration as needed
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="min-h-screen w-full bg-[#F6f7f8]">
+      {loading && <Loading />}
+      {!loading && (
+        <>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+            <Hero />
+          </motion.div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+          >
+            <Aboutme />
+          </motion.div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+          >
+            <Skills />
+          </motion.div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
+          >
+            <ProjectSection />
+          </motion.div>
+        </>
+      )}
     </main>
   );
 }
