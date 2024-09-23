@@ -28,7 +28,7 @@ const Hero = () => {
       onMouseMove={handleMouseMove}
     >
       <div
-        className="flex h-[27rem] w-[22rem] lg:h-5/6 lg:w-5/6 md:h-5/6 md:w-5/6 justify-center bg-white rounded-3xl shadow-2xl"
+        className="flex h-[27rem] w-[22rem] lg:h-5/6 lg:w-5/6 md:h-5/6 md:w-5/6 justify-center bg-white rounded-3xl shadow-2xl mx-auto"
         style={transformStyle}
       >
         <div className="flex flex-col items-center w-full bg-white rounded-3xl p-6 shadow-md">

@@ -7,7 +7,7 @@ import Aboutme from "@/components/main/Aboutme";
 import Skills from "@/components/main/Skills";
 import ProjectSection from "@/components/main/ProjectSection";
 import { motion } from "framer-motion";
-import CustomCursor from "@/components/main/CustomCursor"; // Adjust the import path
+// import CustomCursor from "@/components/main/CustomCursor"; // Adjust the import path
 import "@/app/globals.css";
 
 const Loading = () => (
@@ -187,7 +187,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen w-full bg-[#F6f7f8]">
-      <CustomCursor />
+      {/* <CustomCursor /> */}
       {loading && <Loading />}
       {!loading && (
         <>
