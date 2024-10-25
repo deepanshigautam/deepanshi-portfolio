@@ -63,7 +63,7 @@ const projects = [
       </span>,
       <span key="1233">
         <strong>Skills Showcase:</strong> Demonstrated proficiency in Python and
-        computer vision through innovative project design.
+        computer vision through innovative project designs.
       </span>,
     ],
     link: "https://github.com/deepanshigautam/Air-canvas",
