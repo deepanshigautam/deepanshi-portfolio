@@ -1,6 +1,6 @@
-// components/main/ProjectSection.jsx
-"use client"; // This makes the component a client component
-import ProjectCard from "./ProjectCard"; // Adjust the import path if necessary
+
+"use client"; 
+import ProjectCard from "./ProjectCard"; 
 import gemini from "@/components/assets/gemini-clone.png";
 import aircanvas from "@/components/assets/aircanvas.png";
 import facedet from "@/components/assets/face-detection.png";
