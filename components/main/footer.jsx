@@ -23,7 +23,7 @@ const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className="bg-[#d0d0d0] text-[#2c2c2c] py-16 px-8 relative overflow-hidden"
+      className="bg-neutral-300 text-neutral-800 py-8 md:py-16 px-4 md:px-8 relative overflow-hidden"
     >
       <style>
         {`
@@ -36,45 +36,49 @@ const Footer = () => {
             animation: slideIn 0.8s ease-out forwards;
           }
 
-          .animate-fadeIn {
-            animation: fadeIn 1s ease-in-out forwards;
+          .animate-spin-slow {
+            animation: spin 3s linear infinite;
           }
 
-          .animate-spin-slow {
-            animation: spinSlow 3s linear infinite;
+          @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
           }
         `}
       </style>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Footer Links Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
-          {/* Logo and Tagline */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-2 md:mb-10 lg:mb-16">
+          {/* Logo and Tagline - Visible on all screens */}
           <div
-            className="mb-16 opacity-0"
+            className="col-span-1 md:col-span-1 mb-8 md:mb-0 opacity-0 flex flex-col items-center md:items-start text-center md:text-left"
             ref={(el) => (elementsRef.current[0] = el)}
           >
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-6 h-6 border-2 border-[#444444] rounded-full animate-spin-slow"></div>
-            </div>
-            <h2 className="text-2xl text-[#2c2c2c] mb-2">
+             <div className="relative w-6 h-6 mb-2">
+      <div className="absolute w-full h-full border-2 border-neutral-600 rounded-full " />
+      <div className="absolute w-full h-full rounded-full">
+        <div className="absolute top-1/2 left-1/2 w-1/2 h-0.5 bg-neutral-600 -translate-x-1/2 -translate-y-1/2 animate-spin-slow origin-left" />
+      </div>
+    </div>
+            <h2 className="text-xl md:text-2xl text-neutral-800 mb-2">
               Let&apos;s create something
             </h2>
-            <p className="text-2xl text-[#2c2c2c]">extraordinary together.</p>
+            <p className="text-xl md:text-2xl text-neutral-800">extraordinary together.</p>
           </div>
 
-          {/* Connect Column */}
+          {/* Connect Column - Hidden on mobile */}
           <div
-            className="opacity-0"
+            className="hidden md:block opacity-0"
             ref={(el) => (elementsRef.current[1] = el)}
           >
-            <h3 className="text-xs uppercase tracking-wider mb-4 text-[#444444]">Connect</h3>
-            <ul className="space-y-2 text-[#2c2c2c]">
+            <h3 className="text-xs uppercase tracking-wider mb-4 text-neutral-600">Connect</h3>
+            <ul className="space-y-2 text-neutral-800">
               {['Email', 'LinkedIn', 'GitHub'].map((text, index) => (
                 <li key={index}>
                   <a
                     href="#"
-                    className="hover:text-[#F2F2F2] transition-transform transform hover:scale-105 duration-300"
+                    className="hover:text-neutral-100 transition-all duration-300 hover:scale-105 inline-block"
                   >
                     {text}
                   </a>
@@ -83,18 +87,18 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Work Column */}
+          {/* Work Column - Hidden on mobile */}
           <div
-            className="opacity-0"
+            className="hidden md:block opacity-0"
             ref={(el) => (elementsRef.current[2] = el)}
           >
-            <h3 className="text-xs uppercase tracking-wider mb-4 text-[#444444]">Work</h3>
-            <ul className="space-y-2 text-[#2c2c2c]">
+            <h3 className="text-xs uppercase tracking-wider mb-4 text-neutral-600">Work</h3>
+            <ul className="space-y-2 text-neutral-800">
               {['Projects', 'Resume', 'Skills'].map((text, index) => (
                 <li key={index}>
                   <a
                     href="#"
-                    className="hover:text-[#F2F2F2] transition-transform transform hover:scale-105 duration-300"
+                    className="hover:text-neutral-100 transition-all duration-300 hover:scale-105 inline-block"
                   >
                     {text}
                   </a>
@@ -103,18 +107,18 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* More Column */}
+          {/* More Column - Hidden on mobile */}
           <div
-            className="opacity-0"
+            className="hidden md:block opacity-0"
             ref={(el) => (elementsRef.current[3] = el)}
           >
-            <h3 className="text-xs uppercase tracking-wider mb-4 text-[#444444]">More</h3>
-            <ul className="space-y-2 text-[#2c2c2c]">
+            <h3 className="text-xs uppercase tracking-wider mb-4 text-neutral-600">More</h3>
+            <ul className="space-y-2 text-neutral-800">
               {['About Me', 'Blog', 'Contact'].map((text, index) => (
                 <li key={index}>
                   <a
                     href="#"
-                    className="hover:text-[#F2F2F2] transition-transform transform hover:scale-105 duration-300"
+                    className="hover:text-neutral-100 transition-all duration-300 hover:scale-105 inline-block"
                   >
                     {text}
                   </a>
@@ -125,12 +129,16 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Large DEEPANSHI text at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 overflow-hidden opacity-0" ref={(el) => (elementsRef.current[4] = el)}>
-        <h1 className="text-[17rem] font-bold text-[#616161] -mb-44 px-4 tracking-tighter opacity-90 transition-transform transform hover:scale-105 duration-700">
-          DEEPANSHI<span className="align-top text-4xl">©</span>
+      {/* Large DEEPANSHI text at bottom - Visible on all screens */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 overflow-hidden opacity-0" 
+        ref={(el) => (elementsRef.current[4] = el)}
+      >
+        <h1 className="text-[4rem] md:text-9xl lg:text-[16rem] font-bold text-neutral-600 -mb-10 md:-mb-24 lg:-mb-32 text-center tracking-tighter opacity-90 transition-transform duration-700 hover:scale-105">
+          DEEPANSHI<span className="align-top text-2xl md:text-4xl">©</span>
         </h1>
       </div>
+     
     </footer>
   );
 };
