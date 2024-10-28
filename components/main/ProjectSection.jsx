@@ -17,7 +17,7 @@ const projects = [
       
     ],
     link: "https://github.com/deepanshigautam/Gemini-clone",
-    demo: "#",
+    demo: "https://chat-gemini-2.vercel.app/",
     image: gemini,
   },
   {
