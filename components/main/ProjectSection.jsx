@@ -10,29 +10,11 @@ const projects = [
     title: "Gemini Clone",
     description: [
       <span key="123">
-        <strong>Gemini Clone:</strong> Developed a replica of the original
-        platform.
+        <strong>Gemini Clone:</strong> Developed user friendly replica of the original
+        platform having several functionalities.
         <br />
       </span>,
-      <span key="124">
-        <strong>Tech Stack:</strong> Utilized modern web technologies for
-        responsiveness.
-        <br />
-      </span>,
-      <span key="125">
-        <strong>User Experience:</strong> Created an intuitive interface for
-        seamless navigation.
-        <br />
-      </span>,
-      <span key="126">
-        <strong>Performance:</strong> Focused on clean code for optimal
-        efficiency.
-        <br />
-      </span>,
-      <span key="127">
-        <strong>Skills:</strong> Showcased full-stack development expertise.
-        <br />
-      </span>,
+      
     ],
     link: "https://github.com/deepanshigautam/Gemini-clone",
     demo: "#",
@@ -46,25 +28,7 @@ const projects = [
         application utilizing OpenCV in Python.
         <br />
       </span>,
-      <span key="130">
-        <strong>Technology:</strong> Leveraged computer vision techniques to
-        enable gesture recognition and real-time drawing.
-        <br />
-      </span>,
-      <span key="1231">
-        <strong>User Interaction:</strong> Designed for intuitive user
-        engagement, allowing users to create art using hand movements.
-        <br />
-      </span>,
-      <span key="1232">
-        <strong>Functionality:</strong> Implemented features like color
-        selection, brush size adjustments, and saving drawings.
-        <br />
-      </span>,
-      <span key="1233">
-        <strong>Skills Showcase:</strong> Demonstrated proficiency in Python and
-        computer vision through innovative project designs.
-      </span>,
+      
     ],
     link: "https://github.com/deepanshigautam/Air-canvas",
     demo: "#",
@@ -78,25 +42,7 @@ const projects = [
         using OpenCV for accurate face detection.
         <br />
       </span>,
-      <span key="1235">
-        <strong>Technology:</strong> Utilized machine learning algorithms for
-        effective tracking.
-        <br />
-      </span>,
-      <span key="1236">
-        <strong>User Experience:</strong> Designed an intuitive interface for
-        easy interaction.
-        <br />
-      </span>,
-      <span key="1237">
-        <strong>Functionality:</strong> Features live video processing and
-        adjustable detection settings.
-        <br />
-      </span>,
-      <span key="1238">
-        <strong>Skills Showcase:</strong> Demonstrated expertise in computer
-        vision and Python.
-      </span>,
+      
     ],
     link: "#",
     demo: "#",
