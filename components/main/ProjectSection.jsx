@@ -11,7 +11,7 @@ const projects = [
     description: [
       <span key="123">
         <strong>Gemini Clone:</strong> Developed user friendly replica of the original
-        platform having several functionalities.
+        platform having several functionality.
         <br />
       </span>,
       
