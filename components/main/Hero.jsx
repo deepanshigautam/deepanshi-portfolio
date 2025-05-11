@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import deepi from "@/components/assets/deepanshiimg.jpg";
+import deepi from "../../public/assets/deepanshiimg.jpg";
 import {
   FaInstagram,
   FaLinkedin,
