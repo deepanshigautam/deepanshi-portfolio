@@ -319,7 +319,7 @@ export default function Hero() {
             >
               <span className="inline-flex items-center gap-1">
                 <span className="inline-block w-2 h-2 bg-accent-highlight rounded-full animate-pulse"></span>
-                Hello, I'm
+                Hello, I&apos;m
               </span>
             </div>
             
@@ -355,7 +355,7 @@ export default function Hero() {
               style={{ transitionDelay: '0.6s' }}
             >
               Passionate about creating beautiful, functional, and user-centered digital experiences. 
-              I'm constantly learning and experimenting with new technologies to build engaging web applications 
+              I&apos;m constantly learning and experimenting with new technologies to build engaging web applications 
               that solve real-world problems.
             </p>
             
