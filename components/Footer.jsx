@@ -126,13 +126,8 @@ const Footer = () => {
             ref={(el) => (elementsRef.current[0] = el)}
           >
             <div className="flex items-center gap-3 mb-3">
-              <div className="relative w-6 h-6">
-                <div className="absolute w-full h-full border border-accent-highlight rounded-full"></div>
-                <div className="absolute w-full h-full rounded-full">
-                  <div className="absolute top-1/2 left-1/2 w-1/2 h-0.5 bg-accent-highlight -translate-x-1/2 -translate-y-1/2 animate-spin-slow origin-left"></div>
-                </div>
-              </div>
-              <h2 className="text-xl font-semibold text-theme">Deepanshi Gautam</h2>
+              
+             
             </div>
             <p className="text-sm text-theme-secondary mb-4">Let&apos;s create something extraordinary together.</p>
             

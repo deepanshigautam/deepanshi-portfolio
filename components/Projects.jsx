@@ -16,14 +16,26 @@ import {
 // Project data with your projects
 const projectsData = [
   {
-    id: "project-1",
-    title: "Gemini Clone",
-    description: "Developed user friendly replica of the original platform having several functionality.",
-    image:"/assets/gemini-clone.png",
-    tags: ["React", "Next.js", "Tailwind CSS"],
+    id: "project-naari",
+    title: "NaariSayz",
+    description: "Built a responsive women's safety platform with Supabase and Framer Motion, boosting engagement by 40%.",
+    image: "/assets/naarisayz.png", 
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "NextAuth"],
     links: {
-      github: "https://github.com/deepanshigautam/Gemini-clone",
-      live: "https://chat-gemini-2.vercel.app/",
+      github: "https://github.com/deepanshigautam/naarisayz",
+      live: "https://naarisayz.vercel.app/",
+    },
+    featured: true
+  },
+  {
+    id: "project-medstudy",
+    title: "Med Study",
+    description: "Built an MBBS abroad study platform using HTML, Tailwind CSS, and JavaScript, deployed on Vercel.",
+    image: "/assets/medstudy-1.png", 
+    tags: ["HTML", "Tailwind CSS", "JavaScript"],
+    links: {
+      github: "https://github.com/deepanshigautam/medstudy",
+      live: "https://medstudy.vercel.app/",
     },
     featured: true
   },
@@ -40,6 +52,18 @@ const projectsData = [
     featured: true
   },
   {
+    id: "project-1",
+    title: "Gemini Clone",
+    description: "Developed user friendly replica of the original platform having several functionality.",
+    image: "/assets/gemini-clone.png",
+    tags: ["React", "Next.js", "Tailwind CSS"],
+    links: {
+      github: "https://github.com/deepanshigautam/Gemini-clone",
+      live: "https://chat-gemini-2.vercel.app/",
+    },
+    featured: false
+  },
+  {
     id: "project-3",
     title: "Face Detection",
     description: "Developed a real-time application using OpenCV for accurate face detection.",
@@ -51,35 +75,13 @@ const projectsData = [
     },
     featured: true
   },
-  {
-    id: "project-4",
-    title: "E-Commerce Dashboard",
-    description: "A comprehensive admin dashboard for e-commerce management with real-time analytics, inventory tracking, and sales statistics.",
-    image: "",
-    tags: ["React", "Next.js", "Tailwind CSS", "MongoDB"],
-    links: {
-      github: "https://github.com/username/ecommerce-dashboard",
-      live: "https://ecommerce-dashboard.demo",
-    },
-    featured: false
-  },
-  {
-    id: "project-5",
-    title: "Personal Finance Tracker",
-    description: "A money management application for tracking expenses, setting budgets, and visualizing spending habits with interactive charts.",
-    image: "",
-    tags: ["Vue.js", "Firebase", "Chart.js"],
-    links: {
-      github: "https://github.com/username/finance-tracker",
-      live: "https://finance-tracker.demo",
-    },
-    featured: false
-  },
+  
+ 
   {
     id: "project-6",
     title: "Weather Forecast App",
     description: "A weather application providing accurate forecasts, interactive maps, and personalized weather alerts based on location.",
-    image: "/assets/aircanvas.png", 
+    image: "/assets/weatherApp.png", 
     tags: ["React Native", "Redux", "Weather API"],
     links: {
       github: "https://github.com/username/weather-app",
@@ -102,8 +104,8 @@ const FeaturedProjectCard = memo(({ project, index }) => {
       transition={{ duration: 0.6, delay: 0.1 * index, ease: "easeOut" }}
       className={`relative z-10 flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-6 md:gap-10 mb-20 last:mb-10`}
     >
-      {/* Project image - optimized */}
-      <div className="relative w-full md:w-3/5 aspect-[16/9]">
+      {/* Project image with group class for hover effects */}
+      <div className="relative w-full md:w-3/5 aspect-[16/9] group">
         {/* Simplified shadow effect */}
         <div className="absolute inset-0 bg-gradient-to-tr from-accent-1/20 to-accent-2/10 rounded-xl -rotate-1 scale-[1.02] -z-10 opacity-75"></div>
         <div className={`relative overflow-hidden rounded-xl border-2 border-theme-border ${index % 2 === 0 ? 'rotate-2' : '-rotate-2'} shadow-xl hover:shadow-2xl h-full transform-gpu`}>

@@ -70,6 +70,29 @@ export default function Navbar({ isDark, toggleTheme }) {
     setMobileMenuOpen(false);
   }, []);
 
+  // Handle outside click to close mobile menu
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (mobileMenuOpen && navRef.current && !navRef.current.contains(event.target)) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    
+    // Prevent body scroll when menu is open
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <>
       {/* Overlay for mobile menu */}
@@ -93,32 +116,32 @@ export default function Navbar({ isDark, toggleTheme }) {
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className={`absolute -left-16 -top-16 w-32 h-32 rounded-full bg-accent-highlight/10 blur-2xl transition-opacity duration-500 ${scrolled ? 'opacity-80' : 'opacity-0'}`}></div>
           <div className={`absolute right-1/4 -bottom-8 w-24 h-24 rounded-full bg-accent-1/10 blur-2xl transition-opacity duration-500 ${scrolled ? 'opacity-80' : 'opacity-0'}`}></div>
-          <div className="absolute inset-0 border-b border-theme-border/10"></div>
+          <div className="absolute inset-0 lg:border-b md:border-b md:border-gray-100/10 lg:border-gray-100/10 "></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex justify-between items-center">
-            {/* Logo with enhanced design */}
+            {/* Logo with enhanced design - Mobile optimized */}
             <div className="flex-shrink-0 relative z-10">
               <Link 
                 href="#" 
                 className="group flex items-center"
                 aria-label="Deepanshi Gautam"
               >
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent-highlight via-accent-1 to-accent-2 p-0.5 rotate-3 transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-accent-highlight via-accent-1 to-accent-2 p-0.5 rotate-3 transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
                   <div className="w-full h-full rounded-lg bg-card flex items-center justify-center">
-                    <span className=" bg-clip-text bg-gradient-to-br from-accent-highlight to-accent-2 font-bold text-lg">DG</span>
+                    <span className=" bg-clip-text bg-gradient-to-br from-accent-highlight to-accent-2 font-bold text-base sm:text-lg">DG</span>
                   </div>
                 </div>
-                <div className="ml-3 overflow-hidden">
-                  <span className="block text-lg font-bold text-theme">
+                <div className="ml-2 sm:ml-3 overflow-hidden">
+                  <span className="block text-base sm:text-lg font-bold text-theme">
                     Deepanshi
                     <span className="text-accent-highlight inline-block transition-transform duration-300 group-hover:rotate-12 origin-bottom ml-0.5">.</span>
                   </span>
                   <div className="flex space-x-1 -mt-1">
-                    <span className="text-xs text-theme-secondary transition-transform duration-300 group-hover:translate-x-1">Web</span>
-                    <span className="text-xs text-accent-highlight">•</span>
-                    <span className="text-xs text-theme-secondary transition-transform duration-300 group-hover:translate-x-1">Developer</span>
+                    <span className="text-[10px] sm:text-xs text-theme-secondary transition-transform duration-300 group-hover:translate-x-1">Web</span>
+                    <span className="text-[10px] sm:text-xs text-accent-highlight">•</span>
+                    <span className="text-[10px] sm:text-xs text-theme-secondary transition-transform duration-300 group-hover:translate-x-1">Developer</span>
                   </div>
                 </div>
               </Link>
@@ -127,7 +150,7 @@ export default function Navbar({ isDark, toggleTheme }) {
             {/* Desktop Navigation - Enhanced design */}
             <div className="hidden md:flex items-center">
               <div className="relative p-1 rounded-full bg-theme-50/50 backdrop-blur-sm border border-theme-border/20 shadow-sm">
-                {navItems.map((item, index) => (
+                {navItems.map((item) => (
                   <Link 
                     key={item.name}
                     href={item.href}
@@ -152,11 +175,11 @@ export default function Navbar({ isDark, toggleTheme }) {
             </div>
             
             {/* Theme Toggle + Mobile Menu Button */}
-            <div className="flex items-center gap-3">
-              {/* Theme Toggle Button - Enhanced */}
+            <div className="flex items-center gap-2 sm:gap-3 mr-6">
+              {/* Theme Toggle Button - Enhanced & size responsive */}
               <button
                 onClick={toggleTheme}
-                className={`w-10 h-10 rounded-xl relative overflow-hidden group transition-all duration-300 ${
+                className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl relative overflow-hidden group transition-all duration-300 ${
                   isDark 
                     ? 'bg-gradient-to-br from-indigo-900 to-slate-900 text-yellow-300' 
                     : 'bg-gradient-to-br from-blue-400 to-sky-300 text-amber-500'
@@ -172,17 +195,17 @@ export default function Navbar({ isDark, toggleTheme }) {
                 
                 <div className="relative z-10 w-full h-full flex items-center justify-center">
                   <div className={`transition-all duration-500 absolute ${isDark ? '-rotate-90 scale-0' : 'rotate-0 scale-100'}`}>
-                    <FaSun className="w-5 h-5" />
+                    <FaSun className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <div className={`transition-all duration-500 absolute ${!isDark ? 'rotate-90 scale-0' : 'rotate-0 scale-100'}`}>
-                    <FaMoon className="w-4 h-4" />
+                    <FaMoon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </div>
                 </div>
               </button>
               
-              {/* Mobile menu button - Enhanced */}
+              {/* Mobile menu button - Enhanced & responsive */}
               <button 
-                className={`md:hidden w-10 h-10 rounded-xl flex items-center justify-center relative overflow-hidden transition-all duration-300 ${
+                className={`md:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center relative overflow-hidden transition-all duration-300 ${
                   mobileMenuOpen 
                     ? 'bg-gradient-to-br from-accent-highlight to-accent-1 text-white shadow-lg'
                     : 'bg-theme-50 border border-theme-border text-theme shadow-sm hover:bg-theme-100'
@@ -207,48 +230,51 @@ export default function Navbar({ isDark, toggleTheme }) {
           </div>
         </div>
         
-        {/* Mobile menu - Enhanced */}
+        {/* Mobile menu - Side drawer for larger phones, dropdown for smaller phones */}
         <div 
-          className={`fixed md:hidden top-[72px] right-0 bottom-0 w-3/4 max-w-xs bg-card border-l border-theme-border shadow-2xl transition-transform duration-300 ease-in-out transform z-50 ${
+          className={`fixed md:hidden top-[65px] sm:top-[72px] right-0 bottom-0 w-full xs:w-3/4 max-w-xs bg-card/95 backdrop-blur-md border-l border-theme-border shadow-2xl transition-transform duration-300 ease-in-out transform z-50 ${
             mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+          } overflow-y-auto`}
+          style={{ maxHeight: 'calc(100vh - 65px)' }}
         >
-          <div className="px-4 py-6 space-y-2 h-full flex flex-col">
+          <div className="px-4 py-5 space-y-2 h-full flex flex-col">
             {/* Mobile navigation header */}
-            <div className="mb-4 pb-2 border-b border-theme-border/30">
+            <div className="mb-3 pb-2 border-b border-theme-border/30">
               <h3 className="text-xs uppercase tracking-wider text-theme-secondary font-medium">Navigation</h3>
             </div>
             
             {/* Navigation links */}
-            {navItems.map((item) => (
-              <Link 
-                key={item.name}
-                href={item.href}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-theme-secondary transition-all duration-200 ${
-                  activeSection === item.href.substring(1) 
-                    ? 'bg-gradient-to-r from-accent-highlight/10 to-accent-1/5 text-theme border border-accent-highlight/20' 
-                    : 'hover:bg-theme-50'
-                }`}
-                onClick={() => handleNavClick(item.href.substring(1))}
-              >
-                <span className="w-8 h-8 rounded-lg flex items-center justify-center bg-theme-50 border border-theme-border/30">
-                  {item.icon}
-                </span>
-                <span className="font-medium">{item.name}</span>
-                {activeSection === item.href.substring(1) && (
-                  <ChevronRight size={16} className="ml-auto text-accent-highlight" />
-                )}
-              </Link>
-            ))}
+            <div className="space-y-1.5">
+              {navItems.map((item) => (
+                <Link 
+                  key={item.name}
+                  href={item.href}
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-theme-secondary transition-all duration-200 ${
+                    activeSection === item.href.substring(1) 
+                      ? 'bg-gradient-to-r from-accent-highlight/10 to-accent-1/5 text-theme border border-accent-highlight/20 shadow-sm' 
+                      : 'hover:bg-theme-50'
+                  }`}
+                  onClick={() => handleNavClick(item.href.substring(1))}
+                >
+                  <span className="w-7 h-7 rounded-lg flex items-center justify-center bg-theme-50 border border-theme-border/30 shadow-sm">
+                    {item.icon}
+                  </span>
+                  <span className="font-medium">{item.name}</span>
+                  {activeSection === item.href.substring(1) && (
+                    <ChevronRight size={16} className="ml-auto text-accent-highlight" />
+                  )}
+                </Link>
+              ))}
+            </div>
             
             {/* Decorative elements at bottom */}
             <div className="mt-auto pt-4 border-t border-theme-border/30 flex flex-col space-y-4">
-              <div className="text-xs text-theme-secondary/70 px-4">
+              <div className="text-xs text-theme-secondary/70 px-1">
                 <p>© 2025 Deepanshi Gautam</p>
               </div>
               
-              <div className="px-4">
-                <div className="px-4 py-2 rounded-lg bg-theme-50/50 text-xs text-theme-secondary inline-flex items-center">
+              <div className="px-1">
+                <div className="px-3 py-1.5 rounded-lg bg-theme-50/50 text-xs text-theme-secondary inline-flex items-center">
                   <span className={`inline-block w-2 h-2 rounded-full ${isDark ? 'bg-indigo-500' : 'bg-sky-400'} mr-2`}></span>
                   {isDark ? 'Dark Mode Active' : 'Light Mode Active'}
                 </div>

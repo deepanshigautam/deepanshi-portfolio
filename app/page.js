@@ -20,6 +20,37 @@ export default function Page() {
       document.documentElement.classList.add('dark');
       setIsDark(true);
     }
+    
+    // Add smooth scrolling for anchor links
+    const handleAnchorClick = (e) => {
+      const href = e.target.closest('a')?.getAttribute('href');
+      if (href?.startsWith('#')) {
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          // Get the navbar height for offset
+          const navbar = document.querySelector('nav');
+          const navbarHeight = navbar ? navbar.offsetHeight : 0;
+          
+          window.scrollTo({
+            top: targetElement.offsetTop - navbarHeight - 20, // Subtract navbar height and add some padding
+            behavior: 'smooth'
+          });
+          
+          // Update URL without reloading the page
+          window.history.pushState(null, '', href);
+        }
+      }
+    };
+
+    // Add event listener for all clicks
+    document.addEventListener('click', handleAnchorClick);
+
+    return () => {
+      document.removeEventListener('click', handleAnchorClick);
+    };
   }, []);
 
   const toggleTheme = () => {
